@@ -1,29 +1,30 @@
-package ClassPractice.OOPS.ConstructorsCode.ThisKeyword;
+ package ClassPractice.OOPS.Encapsulation;
 
-public class CallingInstanceMethod {
-    int value;
-    public CallingInstanceMethod(int value)
-    {
-        this.value=value;
+class DatabaseConfig {
+    static String url;
+    static String username;
+
+    static {
+        System.out.println("Static block of database config class executed");
+        url= "jdbc:mysql://localhost:3306/mydatabase";
+        username="admin";
     }
-    public void add(int num)
-    {
-        this.value+=num;
+
+    static void displayConfig() {
+        System.out.println("End of static block of DatabaseConfig class.All static variables initialized.");
+        System.out.println("Database URL:" +url);
+        System.out.println("Database Username:" +username);
     }
-    public void multiply(int n)
-    {
-        this.value*=n;
+}
+public class StaticMethod {
+    static {
+        System.out.println("Inside static block of static method class");
     }
-    public void displayInfo()
-    {
-        System.out.println("value:"+value);
-    }
+
     public static void main(String[] args) {
-        CallingInstanceMethod O1=new CallingInstanceMethod(10);
-        O1.displayInfo();
-        O1.add(2);
-        O1.displayInfo();
-        O1.multiply(4);
-        O1.displayInfo();
+        //Access static method
+        System.out.println("Start of main()");
+        DatabaseConfig.displayConfig();
+        System.out.println("End of main()");
     }
 }
